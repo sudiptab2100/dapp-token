@@ -24,6 +24,9 @@
 // const fs = require('fs');
 // const mnemonic = fs.readFileSync(".secret").toString().trim();
 
+var HDWalletProvider = require("truffle-hdwallet-provider");
+const MNEMONIC = 'spray nominee chimney silk absent hockey vivid demand talk awkward fork just';
+
 module.exports = {
   /**
    * Networks define how you connect to your ethereum client and let you set the
@@ -47,6 +50,14 @@ module.exports = {
      port: 7545,            // Standard Ethereum port (default: none)
      network_id: "*",       // Any network (default: none)
     },
+
+    ropsten: {
+      provider: function() {
+        return new HDWalletProvider(MNEMONIC, "https://ropsten.infura.io/v3/482690ddac7b4c9fabae7cb9c3f75dc1")
+      },
+      network_id: 3,
+      gas: 4000000      //make sure this gas allocation isn't over 4M, which is the max
+    }
     // Another network with more advanced options...
     // advanced: {
     // port: 8777,             // Custom port
